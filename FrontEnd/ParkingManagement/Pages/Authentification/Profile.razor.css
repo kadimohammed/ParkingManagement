@@ -1,0 +1,303 @@
+﻿.profile-page {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Header section */
+.profile-header {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    background-color: var(--secondary-color-light);
+    box-shadow: var(--box-shadow);
+}
+
+.cover-photo {
+    height: 250px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.cover-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cover-photo::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40%;
+    background: linear-gradient(to top, rgba(33, 33, 33, 0.8), transparent);
+}
+
+.profile-info {
+    position: relative;
+    padding: 0 2rem 2rem;
+    margin-top: -75px;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.profile-photo-container {
+    position: relative;
+    z-index: 2;
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary-color);
+    background-color: var(--secondary-color);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.profile-details {
+    flex: 1;
+    min-width: 300px;
+}
+
+.profile-details h1 {
+    color: var(--text-light);
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+}
+
+.profile-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.meta-item i {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.meta-item span {
+    color: var(--text-light);
+    font-size: 1rem;
+}
+
+/* Content section */
+.profile-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.profile-card {
+    background-color: var(--secondary-color-light);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--box-shadow);
+}
+
+.profile-card .card-header {
+    padding: 1.25rem 1.5rem;
+    background-color: var(--secondary-color-lighter);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-card .card-header h2 {
+    color: var(--text-light);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.profile-card .card-header h2 i {
+    color: var(--primary-color);
+}
+
+.profile-card .card-body {
+    padding: 1.5rem;
+    background-color: var(--secondary-color-light);
+    color: var(--text-light);
+}
+
+.info-group {
+    margin-bottom: 1.25rem;
+}
+
+.info-group:last-child {
+    margin-bottom: 0;
+}
+
+.info-group label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.info-group p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.25rem;
+    background-color: var(--secondary-color);
+    border-radius: var(--border-radius);
+    transition: transform 0.2s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+}
+
+.stat-value {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* Actions section */
+.profile-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.btn-edit-profile,
+.btn-change-password,
+.btn-delete-account {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-edit-profile {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-edit-profile:hover {
+    background-color: var(--primary-color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-change-password {
+    background-color: var(--secondary-color-lighter);
+    color: var(--text-light);
+}
+
+.btn-change-password:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-delete-account {
+    background-color: rgba(220, 53, 69, 0.2);
+    color: #dc3545;
+    margin-left: auto;
+}
+
+.btn-delete-account:hover {
+    background-color: rgba(220, 53, 69, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .profile-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .btn-delete-account {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .profile-page {
+        padding: 1rem;
+    }
+    
+    .profile-info {
+        padding: 0 1rem 1.5rem;
+    }
+    
+    .cover-photo {
+        height: 180px;
+    }
+    
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-actions {
+        flex-direction: column;
+    }
+    
+    .btn-edit-profile,
+    .btn-change-password,
+    .btn-delete-account {
+        width: 100%;
+        justify-content: center;
+    }
+}

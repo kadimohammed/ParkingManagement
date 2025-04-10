@@ -1,0 +1,331 @@
+﻿@page "/"
+@page "/dashboard"
+@layout MainLayout
+@inject NavigationManager NavigationManager
+
+@attribute [Authorize(Roles = "Admin")]
+
+
+        <div class="dashboard">
+            <div class="row dashboard-stats">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="stat-card">
+                        <div class="stat-card-body">
+                            <div class="stat-card-icon">
+                                <i class="fas fa-parking"></i>
+                            </div>
+                            <div class="stat-card-info">
+                                <h3 class="stat-card-title">15</h3>
+                                <p class="stat-card-text">Parkings disponibles</p>
+                            </div>
+                        </div>
+                        <div class="stat-card-progress">
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 75%"></div>
+                            </div>
+                            <small>75% d'occupation</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="stat-card">
+                        <div class="stat-card-body">
+                            <div class="stat-card-icon bg-success">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-card-info">
+                                <h3 class="stat-card-title">254</h3>
+                                <p class="stat-card-text">Clients actifs</p>
+                            </div>
+                        </div>
+                        <div class="stat-card-progress">
+                            <div class="progress">
+                                <div class="progress-bar bg-success" style="width: 82%"></div>
+                            </div>
+                            <small>+12% ce mois</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="stat-card">
+                        <div class="stat-card-body">
+                            <div class="stat-card-icon bg-info">
+                                <i class="fas fa-ticket-alt"></i>
+                            </div>
+                            <div class="stat-card-info">
+                                <h3 class="stat-card-title">52</h3>
+                                <p class="stat-card-text">Réservations aujourd'hui</p>
+                            </div>
+                        </div>
+                        <div class="stat-card-progress">
+                            <div class="progress">
+                                <div class="progress-bar bg-info" style="width: 65%"></div>
+                            </div>
+                            <small>+8% vs hier</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="stat-card">
+                        <div class="stat-card-body">
+                            <div class="stat-card-icon bg-warning">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="stat-card-info">
+                                <h3 class="stat-card-title">1 250 €</h3>
+                                <p class="stat-card-text">Revenus aujourd'hui</p>
+                            </div>
+                        </div>
+                        <div class="stat-card-progress">
+                            <div class="progress">
+                                <div class="progress-bar bg-warning" style="width: 30%"></div>
+                            </div>
+                            <small>Objectif: 4 000 €</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mb-4">
+                    <div class="card dashboard-card">
+                        <div class="card-header">
+                            <h4>Vue d'ensemble des parkings</h4>
+                            <div class="card-header-actions">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-calendar"></i> Aujourd'hui
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-placeholder">
+                                <div class="chart-bars">
+                                    <div class="chart-bar" style="height: 60%"><span>Lun</span></div>
+                                    <div class="chart-bar" style="height: 45%"><span>Mar</span></div>
+                                    <div class="chart-bar" style="height: 75%"><span>Mer</span></div>
+                                    <div class="chart-bar" style="height: 90%"><span>Jeu</span></div>
+                                    <div class="chart-bar" style="height: 80%"><span>Ven</span></div>
+                                    <div class="chart-bar active" style="height: 65%"><span>Sam</span></div>
+                                    <div class="chart-bar" style="height: 40%"><span>Dim</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mb-4">
+                    <div class="card dashboard-card">
+                        <div class="card-header">
+                            <h4>Top Parkings</h4>
+                            <div class="card-header-actions">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="parking-list">
+                                <div class="parking-item">
+                                    <div class="parking-info">
+                                        <h5>Parking Centre-ville</h5>
+                                        <p><i class="fas fa-map-marker-alt"></i> 2 Rue de la Paix</p>
+                                    </div>
+                                    <div class="parking-stats">
+                                        <span class="parking-value">98%</span>
+                                        <span class="parking-label">Occupation</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="parking-item">
+                                    <div class="parking-info">
+                                        <h5>Parking Gare</h5>
+                                        <p><i class="fas fa-map-marker-alt"></i> 15 Avenue de la Gare</p>
+                                    </div>
+                                    <div class="parking-stats">
+                                        <span class="parking-value">85%</span>
+                                        <span class="parking-label">Occupation</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="parking-item">
+                                    <div class="parking-info">
+                                        <h5>Parking Commercial</h5>
+                                        <p><i class="fas fa-map-marker-alt"></i> 8 Rue du Commerce</p>
+                                    </div>
+                                    <div class="parking-stats">
+                                        <span class="parking-value">72%</span>
+                                        <span class="parking-label">Occupation</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="parking-item">
+                                    <div class="parking-info">
+                                        <h5>Parking Université</h5>
+                                        <p><i class="fas fa-map-marker-alt"></i> 20 Bd des Étudiants</p>
+                                    </div>
+                                    <div class="parking-stats">
+                                        <span class="parking-value">68%</span>
+                                        <span class="parking-label">Occupation</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-5 mb-4">
+                    <div class="card dashboard-card">
+                        <div class="card-header">
+                            <h4>Demandes récentes</h4>
+                            <div class="card-header-actions">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    Voir tout
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="requests-list">
+                                <div class="request-item">
+                                    <div class="request-icon">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="request-info">
+                                        <h5>Thomas Durant</h5>
+                                        <p>Demande pour le Parking Centre-ville</p>
+                                        <span class="request-time">Il y a 2 heures</span>
+                                    </div>
+                                    <div class="request-actions">
+                                        <button class="btn btn-sm btn-primary">Voir</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="request-item">
+                                    <div class="request-icon">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="request-info">
+                                        <h5>Sophie Martin</h5>
+                                        <p>Demande pour le Parking Gare</p>
+                                        <span class="request-time">Il y a 5 heures</span>
+                                    </div>
+                                    <div class="request-actions">
+                                        <button class="btn btn-sm btn-primary">Voir</button>
+                                    </div>
+                                </div>
+                                
+                                <div class="request-item">
+                                    <div class="request-icon">
+                                        <i class="fas fa-user-circle"></i>
+                                    </div>
+                                    <div class="request-info">
+                                        <h5>Pierre Dupont</h5>
+                                        <p>Demande pour le Parking Commercial</p>
+                                        <span class="request-time">Hier</span>
+                                    </div>
+                                    <div class="request-actions">
+                                        <button class="btn btn-sm btn-primary">Voir</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-7 mb-4">
+                    <div class="card dashboard-card">
+                        <div class="card-header">
+                            <h4>Occupation des parkings</h4>
+                            <div class="card-header-actions">
+                                <button class="btn btn-sm btn-outline-primary">
+                                    <i class="fas fa-calendar"></i> Cette semaine
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="parking-occupation">
+                                <div class="occupation-item">
+                                    <div class="occupation-info">
+                                        <h5>Parking Centre-ville</h5>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 98%"></div>
+                                        </div>
+                                        <div class="occupation-values">
+                                            <span>124/125 places</span>
+                                            <span>98%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="occupation-item">
+                                    <div class="occupation-info">
+                                        <h5>Parking Gare</h5>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 85%"></div>
+                                        </div>
+                                        <div class="occupation-values">
+                                            <span>170/200 places</span>
+                                            <span>85%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="occupation-item">
+                                    <div class="occupation-info">
+                                        <h5>Parking Commercial</h5>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 72%"></div>
+                                        </div>
+                                        <div class="occupation-values">
+                                            <span>180/250 places</span>
+                                            <span>72%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="occupation-item">
+                                    <div class="occupation-info">
+                                        <h5>Parking Université</h5>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 68%"></div>
+                                        </div>
+                                        <div class="occupation-values">
+                                            <span>136/200 places</span>
+                                            <span>68%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="occupation-item">
+                                    <div class="occupation-info">
+                                        <h5>Parking Sud</h5>
+                                        <div class="progress">
+                                            <div class="progress-bar" style="width: 45%"></div>
+                                        </div>
+                                        <div class="occupation-values">
+                                            <span>90/200 places</span>
+                                            <span>45%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+@code {
+    private void RedirectToLogin()
+    {
+        NavigationManager.NavigateTo("/login");
+    }
+}

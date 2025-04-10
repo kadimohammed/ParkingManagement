@@ -1,0 +1,134 @@
+﻿@inherits LayoutComponentBase
+@using ParkingManagement.Models.Responses
+@using ParkingManagement.Services.Interfaces
+@using ParkingManagement.Utils
+
+<div class="main-layout @(isSidebarCollapsed ? "sidebar-collapsed" : "")">
+    <div class="sidebar @(showMobileMenu ? "show" : "")">
+        <NavMenu />
+    </div>
+
+    <div class="main-content">
+        <header class="top-bar">
+            <div class="left-section">
+            </div>
+
+            <div class="right-section">
+                <div class="user-menu">
+                    <button class="user-menu-button" @onclick="ToggleUserMenu">
+                        <div class="user-avatar-small">
+                            @if (userData != null && !string.IsNullOrEmpty(userData.Photo))
+                            {
+                                <img src="@(ImageService.GetUserImageUrl(userData.Photo))" alt="@userData.FirstName @userData.LastName" width="40" style="border-radius:20px;" class="user-avatar-image" />
+                            }
+                            else
+                            {
+                                <i class="fas fa-user"></i>
+                            }
+                        </div>
+                        <div class="user-info-small">
+                            <span class="user-name-small">@(userData?.FirstName ?? "") @(userData?.LastName ?? "")</span>
+                            <span class="user-role-small">@(userData?.Role ?? "")</span>
+                        </div>
+                        <i class="fas fa-chevron-down ms-2"></i>
+                    </button>
+                    <div class="user-dropdown-menu @(isUserMenuOpen ? "show" : "")">
+                        <div class="dropdown-user-header">
+                            <div class="dropdown-user-avatar">
+                                @if (userData != null && !string.IsNullOrEmpty(userData.Photo))
+                                {
+                                    <img src="@(ImageService.GetUserImageUrl(userData.Photo))" alt="@userData.FirstName @userData.LastName" width="42" style="border-radius:20px;" class="user-avatar-image" />
+                                }
+                                else
+                                {
+                                    <i class="fas fa-user"></i>
+                                }
+                            </div>
+                            <div class="dropdown-user-info">
+                                <span class="dropdown-user-name">@(userData?.FirstName ?? "") @(userData?.LastName ?? "")</span>
+                                <span class="dropdown-user-email">@(userData?.Email ?? "")</span>
+                            </div>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <a href="/profile" class="dropdown-item">
+                            <i class="fas fa-user-circle me-2"></i> Profil
+                        </a>
+                        <a href="/settings" class="dropdown-item">
+                            <i class="fas fa-cog me-2"></i> Paramètres
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item" @onclick="BeginLogOut" @onclick:preventDefault>
+                            <i class="fas fa-sign-out-alt me-2"></i> Déconnexion
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="content-area">
+            <div class="content-container">
+                @Body
+            </div>
+        </main>
+    </div>
+</div>
+
+
+@code {
+    private bool isSidebarCollapsed = false;
+    private bool isUserMenuOpen = false;
+    private bool showMobileMenu = false;
+
+    [Inject]
+    public AuthenticationStateProvider AuthenticationStateProvider { get; set; }
+
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+
+    private void ToggleMenu()
+    {
+        if (IsSmallScreen())
+        {
+            showMobileMenu = !showMobileMenu;
+        }
+        else
+        {
+            isSidebarCollapsed = !isSidebarCollapsed;
+        }
+    }
+
+    private bool IsSmallScreen()
+    {
+        return false;
+    }
+
+    private void ToggleUserMenu()
+    {
+        isUserMenuOpen = !isUserMenuOpen;
+    }
+
+    private async Task BeginLogOut()
+    {
+        ((ApiAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsLoggedOut();
+        NavigationManager.NavigateTo("/login");
+    }
+
+    // Initialisez comme null pour pouvoir utiliser l'opérateur de fusion null ?. dans le rendu
+    LoginResponse userData = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await Task.Delay(500);
+            userData = await ((ApiAuthenticationStateProvider)AuthenticationStateProvider).GetUserData();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading user data: {ex.Message}");
+            // Vous pourriez implémenter une logique de gestion des erreurs ici
+            // comme rediriger vers la page de connexion si les données utilisateur ne peuvent pas être récupérées
+        }
+    }
+}

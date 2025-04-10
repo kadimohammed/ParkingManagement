@@ -1,0 +1,85 @@
+﻿@page "/parkingsList"
+@layout MainLayout
+
+@attribute [Authorize]
+
+<div class="parkings-list-page">
+    <div class="page-header">
+        <h1><i class="fas fa-parking"></i> Liste des parkings</h1>
+        <div class="search-container">
+            <div class="search-input">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Rechercher un parking..." @oninput="SearchParkings" />
+            </div>
+            <div class="filter-options">
+                <button class="filter-button" title="Filtrer par statut">
+                    <i class="fas fa-filter"></i>
+                </button>
+                <button class="sort-button" title="Trier par nom">
+                    <i class="fas fa-sort-alpha-down"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    @if (ParkingList == null)
+    {
+        <div class="loading-container">
+            <Loader />
+        </div>
+    }
+    else
+    {
+        <div class="parkings-grid">
+            @if(FilteredParkingList.Count == 0)
+            {
+                <div class="no-results">
+                    <i class="fas fa-search"></i>
+                    <h3>Aucun parking trouvé</h3>
+                    <p>Veuillez essayer d'autres mots-clés.</p>
+                </div>
+            }
+            else
+            {
+                @foreach (var p in FilteredParkingList)
+                {
+                    <div class="parking-card">
+                        <div class="parking-image">
+                            <img src="@(ImageService.GetParkingImageUrl(p.Picture))" alt="@p.NomParcking" />
+                            <div class="status-badge @(p.IsWorking ? "active" : "inactive")">
+                                @(p.IsWorking ? "Ouvert" : "Fermé")
+                            </div>
+                        </div>
+                        <div class="parking-content">
+                            <h3 class="parking-name">@p.NomParcking</h3>
+                            <div class="parking-details">
+                                <div class="detail-item">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>@p.Adresse</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-ruler-combined"></i>
+                                    <span>@p.Surface m²</span>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="fas fa-clock"></i>
+                                    <span>@p.TimeStartWork - @p.TimeEndWork</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="parking-actions">
+                            <button class="action-button view-details" @onclick="() => VoirDetails(p.Id)" title="Voir détails">
+                                <i class="fas fa-info-circle"></i>
+                                <span>Détails</span>
+                            </button>
+                            <button class="action-button view-location" @onclick="() => VoirLocation(p.Id)" title="Voir sur la carte">
+                                <i class="fas fa-map-marked-alt"></i>
+                                <span>Carte</span>
+                            </button>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    }
+</div>

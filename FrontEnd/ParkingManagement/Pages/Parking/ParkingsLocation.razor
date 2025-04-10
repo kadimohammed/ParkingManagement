@@ -1,0 +1,38 @@
+﻿@page "/Parking/map"
+@page "/Parking/map/{Id:int?}"
+
+@attribute [Authorize]
+
+@layout MainLayout
+
+@inject IJSRuntime JSRuntime
+@inject NavigationManager NavigationManager
+
+<div class="map-page">
+    <div class="page-header">
+        <h1><i class="fas fa-map-marked-alt"></i> Carte des parkings</h1>
+        <div class="map-controls">
+            <button class="btn-filter" title="Filtrer les parkings">
+                <i class="fas fa-filter"></i>
+            </button>
+            <button class="btn-locate" title="Ma position">
+                <i class="fas fa-location-arrow"></i>
+            </button>
+            <button class="btn-fullscreen"  title="Plein écran">
+                <i class="fas fa-expand"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="card-container">
+        <div class="main-card">
+            <div id="customMap" class="location-map"></div>
+        </div>
+    </div>
+
+    <div class="page-actions">
+        <button class="btn-secondary" @onclick="GoBack">
+            <i class="fas fa-arrow-left"></i> Retour à la liste
+        </button>
+    </div>
+</div>

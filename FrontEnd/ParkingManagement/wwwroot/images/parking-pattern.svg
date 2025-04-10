@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+  <defs>
+    <pattern id="parking-pattern" width="100" height="100" patternUnits="userSpaceOnUse">
+      <path d="M20 10h10v40h-10z" fill="#FF7900" opacity="0.2" />
+      <path d="M25 5v50" stroke="#FF7900" stroke-width="2" opacity="0.3" />
+      <path d="M15 30h20" stroke="#FF7900" stroke-width="2" opacity="0.3" />
+      <text x="25" y="35" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="10" fill="#FF7900" opacity="0.3">P</text>
+      
+      <path d="M70 60h10v40h-10z" fill="#FF7900" opacity="0.2" transform="rotate(45, 75, 80)" />
+      <path d="M75 55v50" stroke="#FF7900" stroke-width="2" opacity="0.3" transform="rotate(45, 75, 80)" />
+      <path d="M65 80h20" stroke="#FF7900" stroke-width="2" opacity="0.3" transform="rotate(45, 75, 80)" />
+      <text x="75" y="85" text-anchor="middle" font-family="Arial" font-weight="bold" font-size="10" fill="#FF7900" opacity="0.3" transform="rotate(45, 75, 80)">P</text>
+    </pattern>
+  </defs>
+  <rect width="100" height="100" fill="url(#parking-pattern)" />
+</svg> 

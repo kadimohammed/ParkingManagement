@@ -1,0 +1,358 @@
+/* Dashboard */
+.dashboard {
+    width: 100%;
+}
+
+/* Stat Cards */
+.stat-card {
+    background-color: var(--secondary-color-light);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1rem;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card-body {
+    padding: 1.25rem;
+    display: flex;
+    align-items: center;
+}
+
+.stat-card-icon {
+    background-color: var(--primary-color);
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+}
+
+.stat-card-icon.bg-success {
+    background-color: var(--success-color);
+}
+
+.stat-card-icon.bg-info {
+    background-color: #17a2b8;
+}
+
+.stat-card-icon.bg-warning {
+    background-color: var(--warning-color);
+}
+
+.stat-card-info {
+    flex: 1;
+}
+
+.stat-card-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--text-light);
+}
+
+.stat-card-text {
+    color: var(--text-muted);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.stat-card-progress {
+    padding: 0 1.25rem 1.25rem;
+}
+
+.progress {
+    height: 0.5rem;
+    background-color: var(--secondary-color-lighter);
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+}
+
+.progress-bar {
+    background-color: var(--primary-color);
+    border-radius: 1rem;
+}
+
+.progress-bar.bg-success {
+    background-color: var(--success-color);
+}
+
+.progress-bar.bg-info {
+    background-color: #17a2b8;
+}
+
+.progress-bar.bg-warning {
+    background-color: var(--warning-color);
+}
+
+.stat-card-progress small {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+/* Dashboard Cards */
+.dashboard-card {
+    background-color: var(--secondary-color-light);
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 1.5rem;
+    height: 100%;
+}
+
+.card-header {
+    background-color: transparent;
+    border-bottom: 1px solid var(--secondary-color-lighter);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.card-header-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background-color: transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Chart Placeholder */
+.chart-placeholder {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding: 1rem 0;
+}
+
+.chart-bars {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+
+.chart-bar {
+    width: 8%;
+    background-color: rgba(255, 121, 0, 0.3);
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    position: relative;
+    transition: all 0.2s ease;
+    min-height: 30px;
+}
+
+.chart-bar:hover {
+    background-color: rgba(255, 121, 0, 0.5);
+}
+
+.chart-bar.active {
+    background-color: var(--primary-color);
+}
+
+.chart-bar span {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Parking List */
+.parking-list {
+    padding: 0;
+}
+
+.parking-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--secondary-color-lighter);
+}
+
+.parking-item:last-child {
+    border-bottom: none;
+}
+
+.parking-info h5 {
+    margin: 0 0 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.parking-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.parking-info i {
+    margin-right: 0.25rem;
+    color: var(--primary-color);
+}
+
+.parking-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.parking-value {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.parking-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Requests List */
+.requests-list {
+    padding: 0;
+}
+
+.request-item {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid var(--secondary-color-lighter);
+}
+
+.request-item:last-child {
+    border-bottom: none;
+}
+
+.request-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: var(--secondary-color-lighter);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+}
+
+.request-info {
+    flex: 1;
+}
+
+.request-info h5 {
+    margin: 0 0 0.25rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.request-info p {
+    margin: 0 0 0.25rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.request-time {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.request-actions {
+    margin-left: 1rem;
+}
+
+/* Parking Occupation */
+.parking-occupation {
+    padding: 1rem 0;
+}
+
+.occupation-item {
+    margin-bottom: 1.5rem;
+}
+
+.occupation-item:last-child {
+    margin-bottom: 0;
+}
+
+.occupation-info h5 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.occupation-values {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+    .stat-card-body {
+        padding: 1rem;
+    }
+    
+    .stat-card-progress {
+        padding: 0 1rem 1rem;
+    }
+    
+    .card-header {
+        padding: 0.75rem 1rem;
+    }
+    
+    .chart-placeholder {
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .stat-card-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        font-size: 1rem;
+    }
+    
+    .stat-card-title {
+        font-size: 1.25rem;
+    }
+    
+    .parking-item, .request-item {
+        padding: 0.75rem 1rem;
+    }
+} 

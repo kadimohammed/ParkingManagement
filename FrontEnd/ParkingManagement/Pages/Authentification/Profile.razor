@@ -1,0 +1,104 @@
+﻿@page "/profile"
+
+@layout MainLayout
+@attribute [Authorize]
+
+<div class="profile-page">
+    @if (user != null)
+    {
+        <div class="profile-container">
+            <div class="profile-header">
+                <div class="cover-photo">
+                    <img src="@(ImageService.GetUserCoverUrl(user.CoverPhoto))" alt="Photo de couverture" />
+                </div>
+                <div class="profile-info">
+                    <div class="profile-photo-container">
+                        <img class="profile-photo" src="@(ImageService.GetUserImageUrl(user.Photo))" alt="Photo de profil" />
+                    </div>
+                    <div class="profile-details">
+                        <h1>@user.FirstName @user.LastName</h1>
+                        <div class="profile-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>@user.Email</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-phone"></i>
+                                <span>@user.Phone</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-content">
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-user"></i> Informations personnelles</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="info-group">
+                            <label>Nom complet</label>
+                            <p>@user.FirstName @user.LastName</p>
+                        </div>
+                        <div class="info-group">
+                            <label>Email</label>
+                            <p>@user.Email</p>
+                        </div>
+                        <div class="info-group">
+                            <label>Téléphone</label>
+                            <p>@user.Phone</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="profile-card">
+                    <div class="card-header">
+                        <h2><i class="fas fa-parking"></i> Activité parking</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-value">0</div>
+                                <div class="stat-label">Réservations</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">0</div>
+                                <div class="stat-label">Parkings favoris</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">0</div>
+                                <div class="stat-label">Demandes</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="profile-actions">
+                <button class="btn-edit-profile">
+                    <i class="fas fa-edit"></i> Modifier le profil
+                </button>
+                <button class="btn-change-password">
+                    <i class="fas fa-key"></i> Changer de mot de passe
+                </button>
+                <button class="btn-delete-account">
+                    <i class="fas fa-trash"></i> Supprimer le compte
+                </button>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="loading-container">
+            <Loader />
+        </div>
+    }
+</div>
+
+
+
+
+
+
+

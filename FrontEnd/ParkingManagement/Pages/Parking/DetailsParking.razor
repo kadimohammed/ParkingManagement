@@ -1,0 +1,108 @@
+﻿@page "/parking/Details/{Id:int}"
+@layout MainLayout
+
+@attribute [Authorize]
+
+<div class="details-page">
+    <div class="page-header">
+        <h1><i class="fas fa-parking"></i> Détails du Parking</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="/parkings">Parkings</a></li>
+                <li class="breadcrumb-item active">Détails</li>
+            </ol>
+        </nav>
+    </div>
+
+    @if (Parking == null)
+    {
+        <div class="loading-container">
+            <Loader></Loader>
+        </div>
+    }
+    else
+    {
+        <div class="card-container">
+            <div class="main-card">
+                <div class="card-header">
+                    <h2>@Parking.NomParcking</h2>
+                    <span class="status-badge @(Parking.IsWorking ? "active" : "inactive")">
+                        @(Parking.IsWorking ? "Ouvert" : "Fermé")
+                    </span>
+                </div>
+                
+                <div class="card-content">
+                    <div class="image-container">
+                        <img src="@(ImageService.GetParkingImageUrl(Parking.Picture))" alt="Photo du parking" class="parking-image">
+                        <div class="location-badge">
+                            <i class="fas fa-map-marker-alt"></i> @Parking.Adresse
+                        </div>
+                    </div>
+                    
+                    <div class="details-container">
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-calendar-alt"></i></div>
+                            <div class="detail-content">
+                                <span class="detail-label">Date de création</span>
+                                <span class="detail-value">@Parking.CreationDate.ToString("dd MMMM yyyy")</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-map-pin"></i></div>
+                            <div class="detail-content">
+                                <span class="detail-label">Coordonnées</span>
+                                <span class="detail-value">@Parking.Latitude, @Parking.Longitude</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-square"></i></div>
+                            <div class="detail-content">
+                                <span class="detail-label">Surface</span>
+                                <span class="detail-value">@Parking.Surface m²</span>
+                            </div>
+                        </div>
+                        
+                        <div class="detail-item">
+                            <div class="detail-icon"><i class="fas fa-clock"></i></div>
+                            <div class="detail-content">
+                                <span class="detail-label">Heures d'ouverture</span>
+                                <span class="detail-value">@Parking.TimeStartWork - @Parking.TimeEndWork</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer">
+                    <div class="days-container">
+                        <h4><i class="fas fa-calendar-week"></i> Jours d'ouverture</h4>
+                        <div class="days-list">
+                            @if (Parking.ParkingDays != null && Parking.ParkingDays.Any())
+                            {
+                                foreach (var day in Parking.ParkingDays)
+                                {
+                                    <span class="day-badge">@day.Day</span>
+                                }
+                            }
+                            else
+                            {
+                                <span class="no-days">Aucun jour défini</span>
+                            }
+                        </div>
+                    </div>
+                    
+                    <div class="actions">
+                        <button class="btn-primary" @onclick="NavigateToMap">
+                            <i class="fas fa-map-marked-alt"></i> Voir sur la carte
+                        </button>
+                        <button class="btn-secondary" @onclick="GoBack">
+                            <i class="fas fa-arrow-left"></i> Retour
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

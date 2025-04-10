@@ -1,0 +1,90 @@
+﻿@page "/parkings"
+@layout MainLayout
+
+@attribute [Authorize(Roles = "Admin")]
+
+<div class="parkings-page">
+    <div class="page-header">
+        <h1><i class="fas fa-parking"></i> Gestion des Parkings</h1>
+        <div class="header-actions">
+            <button class="btn-primary" @onclick="AjouterParking">
+                <i class="fas fa-plus-circle"></i> Ajouter un parking
+            </button>
+        </div>
+    </div>
+
+    @if (ParkingList == null)
+    {
+        <div class="loading-container">
+            <Loader />
+        </div>
+    }
+    else
+    {
+        <div class="card-container">
+            <div class="main-card">
+                <div class="table-responsive">
+                    <table class="parking-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Image</th>
+                                <th>Nom</th>
+                                <th>Adresse</th>
+                                <th>Surface</th>
+                                <th>Ouverture</th>
+                                <th>Fermeture</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var p in ParkingList)
+                            {
+                                <tr>
+                                    <td>@p.Id</td>
+                                    <td>
+                                        <div class="parking-thumbnail">
+                                            <img src="@(ImageService.GetParkingImageUrl(p.Picture))" alt="@p.NomParcking" />
+                                        </div>
+                                    </td>
+                                    <td>@p.NomParcking</td>
+                                    <td class="address-cell">
+                                        <div class="address-content">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span>@p.Adresse</span>
+                                        </div>
+                                    </td>
+                                    <td>@p.Surface m²</td>
+                                    <td>@p.TimeStartWork</td>
+                                    <td>@p.TimeEndWork</td>
+                                    <td>
+                                        <span class="status-badge @(p.IsWorking ? "active" : "inactive")">
+                                            @(p.IsWorking ? "Actif" : "Inactif")
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="btn-icon edit" title="Modifier" @onclick="() => ModifierParking(p.Id)">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                            <button class="btn-icon delete" title="Supprimer" @onclick="() => SupprimerParking(p.Id)">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                            <button class="btn-icon details" title="Détails" @onclick="() => VoirDetails(p.Id)">
+                                                <i class="fas fa-info-circle"></i>
+                                            </button>
+                                            <button class="btn-icon location" title="Localisation" @onclick="() => VoirLocation(p.Id)">
+                                                <i class="fas fa-map-marked-alt"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    }
+</div>

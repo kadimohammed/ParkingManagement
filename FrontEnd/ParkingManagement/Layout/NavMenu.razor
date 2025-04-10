@@ -1,0 +1,130 @@
+﻿@inject NavigationManager NavigationManager
+@implements IDisposable
+
+<AuthorizeView>
+    <Authorized>
+
+<div class="sidebar">
+    <div class="sidebar-header">
+        <div class="logo-container">
+                    <img src="/images/parking_Logo.png" alt="Logo" class="sidebar-logo" />
+            <h5 class="sidebar-title">Kadi PARKiNG</h5>
+        </div>
+        <button class="sidebar-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+
+
+    <div class="sidebar-menu">
+        <div class="sidebar-divider">MENU PRINCIPAL</div>
+        <ul class="nav flex-column">
+
+            @if (context.User.IsInRole("Admin"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link @GetNavLinkClass("/")" href="dashboard">
+                        <span class="nav-icon orange-icon"><i class="fas fa-home"></i></span>
+                        <span class="nav-text">Dashboard</span>
+                    </a>
+                </li>
+            }
+            
+            <li class="nav-item">
+                <a class="nav-link @GetNavLinkClass("/parkingsList")" href="parkingsList">
+                    <span class="nav-icon"><i class="fas fa-list"></i></span>
+                    <span class="nav-text">Liste des parkings</span>
+                </a>
+            </li>
+            
+
+            @if (context.User.IsInRole("Admin"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link @GetNavLinkClass("/parkings")" href="parkings">
+                        <span class="nav-icon"><i class="fas fa-list"></i></span>
+                        <span class="nav-text">Gestion des parkings</span>
+                    </a>
+                </li>
+            }
+
+            <li class="nav-item">
+                <a class="nav-link @GetNavLinkClass("/Parking/map")" href="/Parking/map">
+                    <span class="nav-icon"><i class="fas fa-map-marker-alt"></i></span>
+                    <span class="nav-text">Carte</span>
+                </a>
+            </li>
+
+            @if (context.User.IsInRole("Client"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link @GetNavLinkClass("requests")" href="requests">
+                        <span class="nav-icon blue-icon"><i class="fas fa-clipboard"></i></span>
+                        <span class="nav-text">Mes demandes</span>
+                    </a>
+                </li>
+            }
+
+        </ul>
+
+        <div class="sidebar-divider">AIDE</div>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link @GetNavLinkClass("faq")" href="faq">
+                    <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
+                    <span class="nav-text">FAQ</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @GetNavLinkClass("support")" href="support">
+                    <span class="nav-icon"><i class="fas fa-headset"></i></span>
+                    <span class="nav-text">Support</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="current-url">@CurrentUri</div>
+</div>
+    </Authorized>
+    <NotAuthorized>
+        <ul>
+            <li><NavLink href="/">Accueil</NavLink></li>
+            <li><NavLink href="/login">Connexion</NavLink></li>
+        </ul>
+    </NotAuthorized>
+</AuthorizeView>
+@code {
+    private string CurrentUri { get; set; }
+
+    protected override void OnInitialized()
+    {
+        CurrentUri = NavigationManager.Uri;
+        NavigationManager.LocationChanged += HandleLocationChanged;
+    }
+
+    private void HandleLocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        CurrentUri = e.Location;
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        NavigationManager.LocationChanged -= HandleLocationChanged;
+    }
+
+    private string GetNavLinkClass(string page)
+    {
+        var uri = new Uri(CurrentUri);
+        var currentPath = uri.AbsolutePath.Trim('/').ToLower();
+        
+        var normalizedPage = page.Trim('/').ToLower();
+        
+        if (normalizedPage == "" && currentPath == "dashboard")
+            return "active";
+            
+        // Vérification exacte du chemin
+        return currentPath == normalizedPage ? "active" : "";
+    }
+}

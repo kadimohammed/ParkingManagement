@@ -1,0 +1,87 @@
+﻿@page "/login"
+@layout EmptyLayout
+
+<PageTitle>ParKing - Connexion</PageTitle>
+
+<div class="login-page">
+    <div class="login-background"></div>
+    
+    <div class="container login-container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5">
+                <div class="text-center mb-4 logo-container">
+                    <img src="/images/parking_Logo.png" alt="ParKing" class="logo" onerror="this.onerror=null; this.src='/images/logo-placeholder.svg';" />
+                    <h1 class="app-name">ParKing</h1>
+                    <p class="app-slogan">La gestion de parking simplifiée</p>
+                </div>
+                
+                <div class="card login-card">
+                    <div class="card-body p-4 p-md-5">
+                        <h2 class="card-title text-center mb-4">Connexion</h2>
+                        
+                        <EditForm Model="loginModel" OnValidSubmit="HandleLogin">
+                            <DataAnnotationsValidator />
+                            
+                            @if (errorMessage != null)
+                            {
+                                <div class="alert alert-danger mb-4" role="alert">
+                                    <i class="fas fa-exclamation-circle me-2"></i>
+                                    @errorMessage
+                                </div>
+                            }
+                            
+                            <div class="form-group mb-4">
+                                <label for="email">Adresse email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <InputText @bind-Value="loginModel.Email" class="form-control" id="email" placeholder="nom@exemple.com" />
+                                </div>
+                                <ValidationMessage For="@(() => loginModel.Email)" class="validation-message" />
+                            </div>
+                            
+                            <div class="form-group mb-4">
+                                <label for="password">Mot de passe</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <InputText @bind-Value="loginModel.Password" class="form-control" id="password" placeholder="Votre mot de passe" type="password" />
+                                </div>
+                                <ValidationMessage For="@(() => loginModel.Password)" class="validation-message" />
+                            </div>
+                            
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="remember-me">
+                                    <label class="form-check-label" for="remember-me">
+                                        Se souvenir de moi
+                                    </label>
+                                </div>
+                                <a href="#" class="forgot-password">Mot de passe oublié?</a>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary btn-lg w-100 login-btn" disabled="@isSubmitting">
+                                @if (isSubmitting)
+                                {
+                                    <span>Connexion en cours...</span>
+                                    <i class="fas fa-spinner fa-spin ms-2"></i>
+                                }
+                                else
+                                {
+                                    <span>Se connecter</span>
+                                    <i class="fas fa-arrow-right ms-2"></i>
+                                }
+                            </button>
+                            
+                            <div class="text-center mt-4">
+                                <p class="mb-0">Vous n'avez pas de compte? <a href="/signup" class="signup-link">Inscrivez-vous</a></p>
+                            </div>
+                        </EditForm>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4 copyright">
+                    <p>&copy; @DateTime.Now.Year ParKing. Tous droits réservés.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
