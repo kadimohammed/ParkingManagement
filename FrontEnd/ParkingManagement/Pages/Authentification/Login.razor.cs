@@ -1,10 +1,12 @@
-﻿using Blazored.LocalStorage;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.Extensions.Localization;
 using ParkingManagement.Models.Requests;
 using ParkingManagement.Models.Responses;
+using ParkingManagement.Resources;
 using ParkingManagement.Utils;
 using System.Net.Http.Json;
+
 
 namespace ParkingManagement.Pages.Authentification
 {
@@ -16,6 +18,9 @@ namespace ParkingManagement.Pages.Authentification
 
         [Inject]
         public HttpClient _httpClient { get; set; }
+
+        [Inject]
+        public IStringLocalizer<Resource> Loc { get; set; }
 
         [Inject]
         public AuthenticationStateProvider AuthenticationStateProvider { get; set; }
@@ -58,5 +63,6 @@ namespace ParkingManagement.Pages.Authentification
                 isSubmitting = false;
             }
         }
+
     }
 }

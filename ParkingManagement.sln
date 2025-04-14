@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FrontEnd", "FrontEnd", "{2A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingManagement", "FrontEnd\ParkingManagement\ParkingManagement.csproj", "{FB808FA1-6FCB-4E66-B089-264D73854689}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{7E7AC46A-E344-48D7-AA06-58307C2AE151}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,10 @@ Global
 		{FB808FA1-6FCB-4E66-B089-264D73854689}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB808FA1-6FCB-4E66-B089-264D73854689}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB808FA1-6FCB-4E66-B089-264D73854689}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E7AC46A-E344-48D7-AA06-58307C2AE151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E7AC46A-E344-48D7-AA06-58307C2AE151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E7AC46A-E344-48D7-AA06-58307C2AE151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E7AC46A-E344-48D7-AA06-58307C2AE151}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{033386A6-43F7-4B86-A3F6-43C807FA2202} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{4E3E1829-CB30-46B7-BDE6-D901377D4BBD} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{FB808FA1-6FCB-4E66-B089-264D73854689} = {2AC4DA38-A702-48DC-AB46-72C7F147644B}
+		{7E7AC46A-E344-48D7-AA06-58307C2AE151} = {2AC4DA38-A702-48DC-AB46-72C7F147644B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68C25335-84C8-41C9-9F47-622C696472E8}
